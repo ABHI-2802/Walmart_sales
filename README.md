@@ -1,68 +1,92 @@
-# Walmart-Sales-Analysis-SQL
+# 🛒 Walmart Sales Analysis SQL
 
 ### 📘 About 
-This project aims to explore the Walmart Sales data to understand top performing branches and products, sales trend of of different products, customer behaviour. The aims is to study how sales strategies can be improved and optimized. The dataset was obtained from the Kaggle.
+This project explores Walmart Sales data to identify top-performing branches and products, analyze sales trends across different product categories, and understand customer purchasing behavior. The goal is to study how sales strategies can be optimized and improved. The dataset was obtained from Kaggle.
 
-### Purpose of the Project 
-The major aim of thie project is to gain insight into the sales data of Walmart to understand the different factors that affect sales of the different branches.
+### 🎯 Purpose of the Project 
+The main objective of this project is to gain actionable insights into Walmart's sales performance and understand the key drivers affecting sales across various branches.
 
 ### 📊 About the Data
-The dataset was obtained from the Kaggle Walmart Sales Forecasting Competition. This dataset contains sales transactions from a three different branches of Walmart, respectively located in Mandalay, Yangon and Naypyitaw. The data contains 17 columns and 10000 rows
+The dataset was obtained from the Kaggle Walmart Sales Forecasting Competition. It contains transaction data from three distinct Walmart branches located in **Mandalay**, **Yangon**, and **Naypyitaw**. The dataset consists of **17 columns** and **1,000 records**.
 
-### Analysis List
-Product Analysis
-Conduct analysis on the data to understand the different product lines, the products lines performing best and the product lines that need to be improved.
+---
 
-Sales Analysis
-This analysis aims to answer the question of the sales trends of product. The result of this can help use measure the effectiveness of each sales strategy the business applies and what modificatoins are needed to gain more sales.
+### 🛠️ Technical SQL Concepts & Features Used
 
-Customer Analysis
-This analysis aims to uncover the different customers segments, purchase trends and the profitability of each customer segment.
+| SQL Category | Technical Concepts & Keywords | Application in Project |
+|---|---|---|
+| **DDL (Data Definition Language)** | `CREATE DATABASE`, `CREATE TABLE`, `PRIMARY KEY`, `NOT NULL` | Schema design and defining strict integrity constraints to prevent NULL values |
+| **DML (Data Manipulation Language)** | `ALTER TABLE`, `ADD COLUMN`, `UPDATE ... SET` | Schema modification and writing engineered feature columns back to the database |
+| **Conditional Logic & Control Flow** | `CASE WHEN ... THEN ... ELSE ... END` | Categorizing transaction timestamps into `time_of_day` (Morning, Afternoon, Evening) and labeling product performance (`Good` vs `Bad`) |
+| **Aggregations & Grouping** | `GROUP BY`, `SUM()`, `AVG()`, `COUNT()`, `ORDER BY` | Calculating total revenue, average ratings, total COGS, and ranking top product lines and cities |
+| **Date & Time Functions** | `DAYNAME()`, `MONTHNAME()`, `BETWEEN ... AND ...` | Extracting day of the week and month names from transaction timestamps for temporal sales analysis |
+| **Data Filtering & Deduplication** | `SELECT DISTINCT`, `HAVING`, `WHERE` | Extracting unique product categories, filtering branch locations, and evaluating aggregated metrics |
 
-### ✅ Approach
-Data Wrangling: This is the first step where inspection of data is done to make sure NULL values and missing values are detected and data replacement methods are used to replace, missing or NULL values.
-Build a database
-Create table and insert the data.
-Select columns with null values in them. There are no null values in our database as in creating the tables, we set NOT NULL for each field, hence null values are filtered out.
-Feature Engineering: This will help use generate some new columns from existing ones.
-Add a new column named time_of_day to give insight of sales in the Morning, Afternoon and Evening. This will help answer the question on which part of the day most sales are made.
-Add a new column named day_name that contains the extracted days of the week on which the given transaction took place (Mon, Tue, Wed, Thur, Fri). This will help answer the question on which week of the day each branch is busiest.
-Add a new column named month_name that contains the extracted months of the year on which the given transaction took place (Jan, Feb, Mar). Help determine which month of the year has the most sales and profit.
-Exploratory Data Analysis (EDA): Exploratory data analysis is done to answer the listed questions and aims of this project.
+---
 
-### Business queries
-Generic Question
-How many unique cities does the data have?
-In which city is each branch?
+### 🔍 Analysis Overview
 
-Product
-How many unique product lines does the data have?
-What is the most common payment method?
-What is the most selling product line?
-What is the total revenue by month?
-What month had the largest COGS?
-What product line had the largest revenue?
-What is the city with the largest revenue?
-What product line had the largest VAT?
-Fetch each product line and add a column to those product line showing "Good", "Bad". Good if its greater than average sales
-Which branch sold more products than average product sold?
-What is the most common product line by gender?
-What is the average rating of each product line?
+#### 1. Product Analysis
+Conducting exploratory analysis on product categories to identify top-performing product lines and highlight areas requiring strategy modification.
 
-Sales
-Number of sales made in each time of the day per weekday
-Which of the customer types brings the most revenue?
-Which city has the largest tax percent/ VAT (Value Added Tax)?
-Which customer type pays the most in VAT?
+#### 2. Sales Analysis
+Analyzing sales trends to measure the effectiveness of current business strategies and identify revenue optimization opportunities.
 
-Customer
-How many unique customer types does the data have?
-How many unique payment methods does the data have?
-What is the most common customer type?
-Which customer type buys the most?
-What is the gender of most of the customers?
-What is the gender distribution per branch?
-Which time of the day do customers give most ratings?
-Which time of the day do customers give most ratings per branch?
-Which day fo the week has the best avg ratings?
-Which day of the week has the best average ratings per branch?
+#### 3. Customer Analysis
+Uncovering customer demographics, purchasing behavior, payment preferences, and profitability across customer segments.
+
+---
+
+### ✅ Methodology & Approach
+
+1. **Data Wrangling & Schema Setup:**
+   - Inspected data to handle missing or `NULL` values.
+   - Applied `NOT NULL` constraints during `CREATE TABLE` setup to enforce data integrity.
+
+2. **Feature Engineering (DML & Conditional Statements):**
+   - **`time_of_day`**: Applied `CASE WHEN` logic on the transaction time column to categorize sales into *Morning*, *Afternoon*, and *Evening*.
+   - **`day_name`**: Used `DAYNAME(date)` function to extract transaction days (Mon, Tue, Wed, Thu, Fri, Sat, Sun).
+   - **`month_name`**: Used `MONTHNAME(date)` function to extract transaction months (Jan, Feb, Mar).
+
+3. **Exploratory Data Analysis (EDA):**
+   - Wrote targeted SQL queries using `GROUP BY`, aggregate functions (`SUM`, `AVG`), and conditional logic to answer core business questions.
+
+---
+
+### ❓ Key Business Queries Answered
+
+#### Generic & Branch Queries
+- How many unique cities are present in the dataset?
+- In which city is each branch located?
+
+#### Product Performance Queries
+- How many unique product lines exist?
+- What is the most common payment method?
+- Which product line has the highest total quantity sold?
+- What is the total revenue generated by month?
+- Which month recorded the highest Cost of Goods Sold (COGS)?
+- Which product line generated the highest revenue?
+- Which city generated the highest revenue?
+- Which product line incurred the highest Value Added Tax (VAT)?
+- How can we classify product lines as **"Good"** or **"Bad"** based on average sales volume using `CASE WHEN` statements?
+- Which branches sold more units than the overall average?
+- What is the most popular product line by customer gender?
+- What is the average rating for each product line?
+
+#### Sales & Logistics Queries
+- What is the transaction volume by time of day for each weekday?
+- Which customer type contributes the most to overall revenue?
+- Which city has the highest average tax percentage / VAT?
+- Which customer type pays the most in VAT?
+
+#### Customer Demographics & Behavior Queries
+- How many unique customer types and payment methods exist?
+- Which customer type is the most common?
+- Which customer segment generates the highest purchase volume?
+- What is the gender distribution among customers overall and per branch?
+- During which time of day do customers submit the highest average ratings per branch?
+- Which day of the week yields the highest average customer ratings overall and per branch?
+
+---
+
+*Project created and maintained by [Abhishek Biradar](https://github.com/ABHI-2802)*
